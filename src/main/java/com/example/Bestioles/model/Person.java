@@ -28,9 +28,9 @@ public class Person {
     private String password;
 
     @Column(name = "active")
-    private Boolean active = true;
+    private Byte active;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "person_animals",
             joinColumns = @JoinColumn(name = "person_id"),
@@ -56,7 +56,7 @@ public class Person {
         this.lastname = lastname;
         this.login = login;
         this.password = password;
-        this.active = true;
+        this.active = active;
     }
 
     public Integer getId() {
@@ -107,11 +107,11 @@ public class Person {
         this.password = password;
     }
 
-    public Boolean getActive() {
+    public Byte getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(Byte active) {
         this.active = active;
     }
 
@@ -141,8 +141,6 @@ public class Person {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
-                ", animals=" + animals +
-                ", roles=" + roles +
                 '}';
     }
 }
