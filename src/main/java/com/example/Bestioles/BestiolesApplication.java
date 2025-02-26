@@ -54,6 +54,7 @@ public class BestiolesApplication implements CommandLineRunner {
 		Person alice = new Person(25, "Alice", "Dupont", "alice", "alice");
 		Person bob = new Person(30, "Bob", "Martin", "bob", "bob");
 		personRepository.save(alice);
+		personRepository.save(bob);
 
 		// Liste des personnes
 		System.out.println("Liste des personnes : ");
@@ -69,5 +70,17 @@ public class BestiolesApplication implements CommandLineRunner {
 		System.out.println("Liste des especes : ");
 	    List<Species> species = speciesRepository.findAll();
 		species.forEach(System.out::println);
+
+		// Premiere personne
+		String person1 = personRepository.findById(1).toString();
+		System.out.println("Première personne : " + person1);
+
+		// Premier animal
+		String animal1 = animalRepository.findById(1).toString();
+		System.out.println("Premier animal : " + animal1);
+
+		// Premiere espece
+		String species1 = speciesRepository.findById(1).toString();
+		System.out.println("Première espece : " + species1);
 	}
 }
