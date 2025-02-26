@@ -56,7 +56,7 @@ public class Person {
         this.lastname = lastname;
         this.login = login;
         this.password = password;
-        this.active = active;
+        this.active = active = 1;
     }
 
     public Integer getId() {
