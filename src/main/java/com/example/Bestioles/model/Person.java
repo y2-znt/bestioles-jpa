@@ -30,7 +30,7 @@ public class Person {
     @Column(name = "active")
     private Byte active;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "person_animals",
             joinColumns = @JoinColumn(name = "person_id"),
@@ -38,7 +38,7 @@ public class Person {
     )
     private Set<Animal> animals = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "person_role",
             joinColumns = @JoinColumn(name = "person_id"),

@@ -2,6 +2,8 @@ package com.example.Bestioles.model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "species")
@@ -15,6 +17,9 @@ public class Species implements Serializable {
 
     @Column(name = "latin_name")
     private String latinName;
+
+    @OneToMany(mappedBy = "species", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Animal> animals = new HashSet<>();
 
     public Species() {
 
@@ -47,6 +52,14 @@ public class Species implements Serializable {
 
     public void setLatinName(String latinName) {
         this.latinName = latinName;
+    }
+
+    public Set<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(Set<Animal> animals) {
+        this.animals = animals;
     }
 
     @Override

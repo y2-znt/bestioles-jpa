@@ -11,16 +11,16 @@ public class Animal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "color")
+    @Column(name = "COLOR")
     private String color;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
     @Column(name = "sex")
     private String sex;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "species_id")
     private Species species;
 
