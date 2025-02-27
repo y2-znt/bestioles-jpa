@@ -107,10 +107,21 @@ public class BestiolesApplication implements CommandLineRunner {
 //		species = speciesRepository.findAll();
 //		species.forEach(System.out::println);
 
+		// Recherche d'une espèce par nom commun
 		Species species = speciesRepository.findFirstByCommonName("Lapin");
 		System.out.println("Première espèce trouvée : " + species);
 
+		// Recherche d'espèces par nom latin
 		List<Species> matchingSpecies = speciesRepository.findByLatinName("chat");
 		System.out.println("Espèces correspondantes : " + matchingSpecies);
+
+		// Recherche d'une personne par nom ou prénom
+		List<Person> peopleByName = personRepository.findByFirstnameOrLastname("Sophie", "Nero");
+		System.out.println("Personne par nom ou prénom : " + peopleByName);
+
+		// Recherche de personnes par âge supérieur ou égal à 30
+		List<Person> adults = personRepository.findByAgeGreaterThanEqual(30);
+		System.out.println("Personnes âgées de 30 ans ou plus : " + adults);
+
 	}
 }
