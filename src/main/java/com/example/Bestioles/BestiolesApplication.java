@@ -20,9 +20,9 @@ import java.util.Set;
 @SpringBootApplication
 public class BestiolesApplication implements CommandLineRunner {
 
-	private final PersonRepository personRepository;
-	private final AnimalRepository animalRepository;
-	private final SpeciesRepository speciesRepository;
+	private PersonRepository personRepository;
+	private AnimalRepository animalRepository;
+	private SpeciesRepository speciesRepository;
 
 	@Autowired
 	public BestiolesApplication(PersonRepository personRepository, AnimalRepository animalRepository, SpeciesRepository speciesRepository) {
@@ -57,17 +57,17 @@ public class BestiolesApplication implements CommandLineRunner {
 		personRepository.save(bob);
 
 		// Liste des personnes
-		System.out.println("Liste des personnes : ");
+		System.out.println("Liste des personnes avant supression : ");
 		List<Person> persons = personRepository.findAll();
 		persons.forEach(System.out::println);
 
 		// Liste des animaux
-		System.out.println("Liste des animaux : ");
+		System.out.println("Liste des animaux avant supression : ");
 		List<Animal> animals = animalRepository.findAll();
 		animals.forEach(System.out::println);
 
 		// Liste des especes
-		System.out.println("Liste des especes : ");
+		System.out.println("Liste des especes avant supression : ");
 	    List<Species> species = speciesRepository.findAll();
 		species.forEach(System.out::println);
 
@@ -82,5 +82,30 @@ public class BestiolesApplication implements CommandLineRunner {
 		// Premiere espece
 		String species1 = speciesRepository.findById(1).toString();
 		System.out.println("Première espece : " + species1);
+
+		// Suppression d'une personne
+		personRepository.deleteById(9);
+
+		// Suppression d'un animal
+		animalRepository.deleteById(20);
+
+		// Suppression d'une espece
+		speciesRepository.deleteById(17);
+
+		// Liste des personnes après supression
+		System.out.println("Liste des personnes après supression : ");
+		persons = personRepository.findAll();
+		persons.forEach(System.out::println);
+
+		// Liste des animaux après supression
+		System.out.println("Liste des animaux après supression : ");
+		animals = animalRepository.findAll();
+		animals.forEach(System.out::println);
+
+		// Liste des especes après supression
+		System.out.println("Liste des especes après supression : ");
+		species = speciesRepository.findAll();
+		species.forEach(System.out::println);
+
 	}
 }
