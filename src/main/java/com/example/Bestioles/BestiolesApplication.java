@@ -38,74 +38,79 @@ public class BestiolesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		// Création des espèces
-		Species chien = new Species("Canis lupus", "Chien");
-		Species chat = new Species("Felis catus", "Chat");
-		speciesRepository.save(chien);
-		speciesRepository.save(chat);
+//		// Création des espèces
+//		Species chien = new Species("Canis lupus", "Chien");
+//		Species chat = new Species("Felis catus", "Chat");
+//		speciesRepository.save(chien);
+//		speciesRepository.save(chat);
+//
+//		// Création des animaux
+//		Animal rex = new Animal("Rex", "Marron", "Mâle", chien);
+//		Animal garfield = new Animal("Garfield", "Orange", "Mâle", chat);
+//		animalRepository.save(rex);
+//		animalRepository.save(garfield);
+//
+//		// Création des personnes
+//		Person alice = new Person(25, "Alice", "Dupont", "alice", "alice");
+//		Person bob = new Person(30, "Bob", "Martin", "bob", "bob");
+//		personRepository.save(alice);
+//		personRepository.save(bob);
+//
+//		// Liste des personnes
+//		System.out.println("Liste des personnes avant supression : ");
+//		List<Person> persons = personRepository.findAll();
+//		persons.forEach(System.out::println);
+//
+//		// Liste des animaux
+//		System.out.println("Liste des animaux avant supression : ");
+//		List<Animal> animals = animalRepository.findAll();
+//		animals.forEach(System.out::println);
+//
+//		// Liste des especes
+//		System.out.println("Liste des especes avant supression : ");
+//	    List<Species> species = speciesRepository.findAll();
+//		species.forEach(System.out::println);
+//
+//		// Premiere personne
+//		String person1 = personRepository.findById(1).toString();
+//		System.out.println("Première personne : " + person1);
+//
+//		// Premier animal
+//		String animal1 = animalRepository.findById(1).toString();
+//		System.out.println("Premier animal : " + animal1);
+//
+//		// Premiere espece
+//		String species1 = speciesRepository.findById(1).toString();
+//		System.out.println("Première espece : " + species1);
+//
+//		// Suppression d'une personne
+//		personRepository.deleteById(9);
+//
+//		// Suppression d'un animal
+//		animalRepository.deleteById(20);
+//
+//		// Suppression d'une espece
+//		speciesRepository.deleteById(17);
+//
+//		// Liste des personnes après supression
+//		System.out.println("Liste des personnes après supression : ");
+//		persons = personRepository.findAll();
+//		persons.forEach(System.out::println);
+//
+//		// Liste des animaux après supression
+//		System.out.println("Liste des animaux après supression : ");
+//		animals = animalRepository.findAll();
+//		animals.forEach(System.out::println);
+//
+//		// Liste des especes après supression
+//		System.out.println("Liste des especes après supression : ");
+//		species = speciesRepository.findAll();
+//		species.forEach(System.out::println);
 
-		// Création des animaux
-		Animal rex = new Animal("Rex", "Marron", "Mâle", chien);
-		Animal garfield = new Animal("Garfield", "Orange", "Mâle", chat);
-		animalRepository.save(rex);
-		animalRepository.save(garfield);
+		Species species = speciesRepository.findFirstByCommonName("Lapin");
+		System.out.println("Première espèce trouvée : " + species);
 
-		// Création des personnes
-		Person alice = new Person(25, "Alice", "Dupont", "alice", "alice");
-		Person bob = new Person(30, "Bob", "Martin", "bob", "bob");
-		personRepository.save(alice);
-		personRepository.save(bob);
-
-		// Liste des personnes
-		System.out.println("Liste des personnes avant supression : ");
-		List<Person> persons = personRepository.findAll();
-		persons.forEach(System.out::println);
-
-		// Liste des animaux
-		System.out.println("Liste des animaux avant supression : ");
-		List<Animal> animals = animalRepository.findAll();
-		animals.forEach(System.out::println);
-
-		// Liste des especes
-		System.out.println("Liste des especes avant supression : ");
-	    List<Species> species = speciesRepository.findAll();
-		species.forEach(System.out::println);
-
-		// Premiere personne
-		String person1 = personRepository.findById(1).toString();
-		System.out.println("Première personne : " + person1);
-
-		// Premier animal
-		String animal1 = animalRepository.findById(1).toString();
-		System.out.println("Premier animal : " + animal1);
-
-		// Premiere espece
-		String species1 = speciesRepository.findById(1).toString();
-		System.out.println("Première espece : " + species1);
-
-		// Suppression d'une personne
-		personRepository.deleteById(9);
-
-		// Suppression d'un animal
-		animalRepository.deleteById(20);
-
-		// Suppression d'une espece
-		speciesRepository.deleteById(17);
-
-		// Liste des personnes après supression
-		System.out.println("Liste des personnes après supression : ");
-		persons = personRepository.findAll();
-		persons.forEach(System.out::println);
-
-		// Liste des animaux après supression
-		System.out.println("Liste des animaux après supression : ");
-		animals = animalRepository.findAll();
-		animals.forEach(System.out::println);
-
-		// Liste des especes après supression
-		System.out.println("Liste des especes après supression : ");
-		species = speciesRepository.findAll();
-		species.forEach(System.out::println);
-
+		List<Species> matchingSpecies = speciesRepository.findByLatinName("chat");
+		System.out.println("Espèces correspondantes : " + matchingSpecies);
 	}
 }
