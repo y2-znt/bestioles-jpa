@@ -123,5 +123,14 @@ public class BestiolesApplication implements CommandLineRunner {
 		List<Person> adults = personRepository.findByAgeGreaterThanEqual(30);
 		System.out.println("Personnes âgées de 30 ans ou plus : " + adults);
 
+		// Recherche des animaux d'une espèce donnée
+		Species chat = speciesRepository.findById(1).orElse(null);
+		List<Animal> chats = animalRepository.findBySpecies(chat);
+		System.out.println("Animaux de l'espèce Chien : " + chats);
+
+		// Recherche des animaux dont la couleur est dans une liste donnée
+		List<String> couleurs = List.of("Blanc");
+		List<Animal> couleurAnimal = animalRepository.findByColorIn(couleurs);
+		System.out.println("Animaux avec couleur : " + couleurAnimal);
 	}
 }
