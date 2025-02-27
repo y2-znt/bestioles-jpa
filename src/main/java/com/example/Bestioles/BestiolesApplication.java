@@ -140,5 +140,13 @@ public class BestiolesApplication implements CommandLineRunner {
 		// Rechercher les espèces dont le nom commun contient "Chat"
 		List<Species> speciesLike = speciesRepository.findByCommonNameLike("Chat");
 		System.out.println("Espèces correspondant au mot-clé 'Chat' : " + speciesLike);
+
+		// Rechercher les personnes entre 20 et 50 ans
+		List<Person> personsByAge = personRepository.findByAgeBetween(20, 50);
+		System.out.println("Personnes entre 20 et 50 ans : " + personsByAge);
+
+		Animal animal = animalRepository.findById(1).orElse(null);
+		List<Person> personsWithAnimal = personRepository.findByAnimal(animal);
+		System.out.println("Personnes possédant l'animal " + animal.getName() + " : " + personsWithAnimal);
 	}
 }
