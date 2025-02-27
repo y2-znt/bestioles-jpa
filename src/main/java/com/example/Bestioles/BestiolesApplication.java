@@ -132,5 +132,13 @@ public class BestiolesApplication implements CommandLineRunner {
 		List<String> couleurs = List.of("Blanc");
 		List<Animal> couleurAnimal = animalRepository.findByColorIn(couleurs);
 		System.out.println("Animaux avec couleur : " + couleurAnimal);
+
+		// Afficher toutes les espèces triées par nom commun
+		List<Species> orderedSpecies = speciesRepository.findAllOrderedByCommonName();
+		System.out.println("Espèces triées par nom commun : " + orderedSpecies);
+
+		// Rechercher les espèces dont le nom commun contient "Chat"
+		List<Species> speciesLike = speciesRepository.findByCommonNameLike("Chat");
+		System.out.println("Espèces correspondant au mot-clé 'Chat' : " + speciesLike);
 	}
 }
